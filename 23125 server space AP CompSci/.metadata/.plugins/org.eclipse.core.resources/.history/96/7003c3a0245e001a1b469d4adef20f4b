@@ -1,0 +1,592 @@
+import java.util.*;
+
+public class TestClassroom {
+
+	public static void main(String[] args) {
+		Scanner r = new Scanner(System.in);
+		Random rand = new Random();
+		int exit = 0;
+		ClassRoom myClass = new ClassRoom();
+		for (int i = 1; i<20; i++) {
+			myClass.manuallyAdd("Student"+i+rand.nextInt(50), (int)(Math.random() * 100+1), (int)(Math.random() * 100+1), (int)(Math.random() * 100+1));
+		}
+		while (exit == 0) {
+			System.out.println("==Menu===========================");
+			System.out.println("| [1.] Add Student              |");
+			System.out.println("| [2.] Remove Student           |");
+			System.out.println("| [3.] Print Class Roster       |");
+			System.out.println("| [4.] Print Student Info       |");
+			System.out.println("| [5.] Print Student Count      |");
+			System.out.println("| [6.] Print Individual Student |");
+			System.out.println("| [7.] Print Top Student        |");
+			System.out.println("| [8.] Print Class Average      |");
+			System.out.println("| [9.] Exit                     |");
+			System.out.println("=================================");
+			
+			try {
+				System.out.println("Input a number 1-9: ");
+				int input = r.nextInt();
+				if (input == 1) {
+					System.out.println("Input Student Name: ");
+					r.nextLine();
+					String nm = r.nextLine();
+					System.out.println("Input Student Test1: ");
+					int t1 = r.nextInt();
+					System.out.println("Input Student Test2: ");
+					int t2 = r.nextInt();
+					System.out.println("Input Student Test3: ");
+					int t3 = r.nextInt();
+					System.out.println(myClass.manuallyAdd(nm,t1,t2,t3));
+				} else if (input == 2) {
+					System.out.println("Input Student Name for Removal: ");
+					r.nextLine();
+					System.out.println(myClass.removeStudent(r.nextLine()));
+					
+				} else if (input == 3) {
+					System.out.println(myClass.printRoster());
+				} else if (input == 4) {
+					System.out.println(myClass.printAll());
+				} else if (input == 5) {
+					System.out.println(myClass.printNum());
+				} else if (input == 6) {
+					r.nextLine();
+					System.out.println("Enter Student Name: ");
+					String nm = r.nextLine();
+					System.out.println(myClass.printStudent(nm));
+				} else if (input == 7) {
+					System.out.println(myClass.getBestTestScore());
+				} else if (input == 8) {
+					System.out.println("The average is: "+myClass.getClassAverage());
+				} else if (input == 9) {
+					exit = -1;
+					System.out.println("Exited");
+				}
+				
+				
+				
+			} catch(Exception e) {
+				System.out.println("Encountered the error " + e + ", please try again. \n");
+				r.nextLine();
+			}
+			
+			
+		}
+		r.close();
+
+	}
+
+}
+/*
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+5
+19
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+3
+Student14
+Student210
+Student313
+Student443
+Student512
+Student647
+Student742
+Student82
+Student933
+Student1014
+Student1127
+Student1232
+Student1318
+Student1431
+Student153
+Student167
+Student1743
+Student1817
+Student1922
+
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+4
+Name: Student14
+Test 1: 37
+Test 2: 53
+Test 3: 79
+Average: 56
+Name: Student210
+Test 1: 78
+Test 2: 56
+Test 3: 97
+Average: 77
+Name: Student313
+Test 1: 22
+Test 2: 24
+Test 3: 95
+Average: 47
+Name: Student443
+Test 1: 80
+Test 2: 55
+Test 3: 65
+Average: 67
+Name: Student512
+Test 1: 74
+Test 2: 9
+Test 3: 17
+Average: 33
+Name: Student647
+Test 1: 77
+Test 2: 89
+Test 3: 25
+Average: 64
+Name: Student742
+Test 1: 22
+Test 2: 95
+Test 3: 1
+Average: 39
+Name: Student82
+Test 1: 13
+Test 2: 31
+Test 3: 53
+Average: 32
+Name: Student933
+Test 1: 32
+Test 2: 27
+Test 3: 34
+Average: 31
+Name: Student1014
+Test 1: 32
+Test 2: 51
+Test 3: 75
+Average: 53
+Name: Student1127
+Test 1: 72
+Test 2: 81
+Test 3: 19
+Average: 57
+Name: Student1232
+Test 1: 46
+Test 2: 83
+Test 3: 41
+Average: 57
+Name: Student1318
+Test 1: 88
+Test 2: 63
+Test 3: 13
+Average: 55
+Name: Student1431
+Test 1: 74
+Test 2: 77
+Test 3: 36
+Average: 62
+Name: Student153
+Test 1: 2
+Test 2: 63
+Test 3: 77
+Average: 47
+Name: Student167
+Test 1: 87
+Test 2: 47
+Test 3: 69
+Average: 68
+Name: Student1743
+Test 1: 8
+Test 2: 94
+Test 3: 55
+Average: 52
+Name: Student1817
+Test 1: 96
+Test 2: 28
+Test 3: 61
+Average: 62
+Name: Student1922
+Test 1: 96
+Test 2: 23
+Test 3: 78
+Average: 66
+
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+7
+Name: Student210
+Test 1: 78
+Test 2: 56
+Test 3: 97
+Average: 77
+
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+6
+Enter Student Name: 
+Student1922
+Name: Student1922
+Test 1: 96
+Test 2: 23
+Test 3: 78
+Average: 66
+
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+6
+Enter Student Name: 
+
+Student not found
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+8
+The average is: 53
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+1
+Input Student Name: 
+George
+Input Student Test1: 
+1
+Input Student Test2: 
+1
+Input Student Test3: 
+1
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+Beorge
+Encountered the error java.util.InputMismatchException, please try again. 
+
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+1
+Input Student Name: 
+Beorge
+Input Student Test1: 
+2
+Input Student Test2: 
+2
+Input Student Test3: 
+2
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+1
+Input Student Name: 
+Peorge
+Input Student Test1: 
+3
+Input Student Test2: 
+3
+Input Student Test3: 
+3
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+5
+22
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+2
+Input Student Name for Removal: 
+George
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+3
+Student14
+Student210
+Student313
+Student443
+Student512
+Student647
+Student742
+Student82
+Student933
+Student1014
+Student1127
+Student1232
+Student1318
+Student1431
+Student153
+Student167
+Student1743
+Student1817
+Student1922
+Beorge
+Peorge
+
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+1
+Input Student Name: 
+Leorge
+Input Student Test1: 
+4
+Input Student Test2: 
+4
+Input Student Test3: 
+4
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+1
+Input Student Name: 
+Eorge
+Input Student Test1: 
+5
+Input Student Test2: 
+5
+Input Student Test3: 
+5
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+5
+23
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+1
+Input Student Name: 
+Feorge
+Input Student Test1: 
+6
+Input Student Test2: 
+6
+Input Student Test3: 
+6
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+2
+Input Student Name for Removal: 
+Feorge
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+1
+Input Student Name: 
+a
+Input Student Test1: 
+a
+Encountered the error java.util.InputMismatchException, please try again. 
+
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+7
+Name: Student210
+Test 1: 78
+Test 2: 56
+Test 3: 97
+Average: 77
+
+==Menu===========================
+| [1.] Add Student              |
+| [2.] Remove Student           |
+| [3.] Print Class Roster       |
+| [4.] Print Student Info       |
+| [5.] Print Student Count      |
+| [6.] Print Individual Student |
+| [7.] Print Top Student        |
+| [8.] Print Class Average      |
+| [9.] Exit                     |
+=================================
+Input a number 1-9: 
+9
+Exited
+*/
